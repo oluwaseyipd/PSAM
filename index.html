@@ -379,57 +379,57 @@
 
 
 
-        function validateCounselForm() {
-            var fname = $("#fname").val();
-            var phone = $("#phone").val();
-            var digit = /^[0-9]+$/;
-            var validCounsel = true;
-            removeCounselMessage();
+        // function validateCounselForm() {
+        //     var fname = $("#fname").val();
+        //     var phone = $("#phone").val();
+        //     var digit = /^[0-9]+$/;
+        //     var validCounsel = true;
+        //     removeCounselMessage();
 
-            if (fname == "") {
-                event.preventDefault();
-                document.getElementById("cfname").innerHTML = "This input cannot be left empty";
-                validCounsel = false;
-            }
+        //     if (fname == "") {
+        //         event.preventDefault();
+        //         document.getElementById("cfname").innerHTML = "This input cannot be left empty";
+        //         validCounsel = false;
+        //     }
 
-            if (!digit.test(phone)) {
-                event.preventDefault();
-                document.getElementById("cphone").innerHTML = "Input a valid Phone Number";
-                validCounsel = false;
-            }
+        //     if (!digit.test(phone)) {
+        //         event.preventDefault();
+        //         document.getElementById("cphone").innerHTML = "Input a valid Phone Number";
+        //         validCounsel = false;
+        //     }
 
-            return validCounsel;
+        //     return validCounsel;
 
-        }
+        // }
 
 
-        function removeCounselMessage() {
-            var eremove = document.querySelectorAll(".counsel-error");
-            [].forEach.call(eremove, function (el) {
-                el.innerHTML = "";
-            });
-        }
+        // function removeCounselMessage() {
+        //     var eremove = document.querySelectorAll(".counsel-error");
+        //     [].forEach.call(eremove, function (el) {
+        //         el.innerHTML = "";
+        //     });
+        // }
 
-        $("#bookc").click(function (e) {
-            e.preventDefault();
-            var validCounsel = validateCounselForm();
-            if (validCounsel === true) {
-                var form = $(this).closest('form');
-                var data = form.serialize();
-                var url = "counsel.php";
-                $.ajax({
-                    type: 'post',
-                    url: url,
-                    data: data,
-                    success: function (response) {
-                        $('#successModal').modal('show');
-                    },
-                    error: function (request, error) {
-                        $('#failureModal').modal('show');
-                    }
-                });
-            }
-        });
+        // $("#bookc").click(function (e) {
+        //     e.preventDefault();
+        //     var validCounsel = validateCounselForm();
+        //     if (validCounsel === true) {
+        //         var form = $(this).closest('form');
+        //         var data = form.serialize();
+        //         var url = "counsel.php";
+        //         $.ajax({
+        //             type: 'post',
+        //             url: url,
+        //             data: data,
+        //             success: function (response) {
+        //                 $('#successModal').modal('show');
+        //             },
+        //             error: function (request, error) {
+        //                 $('#failureModal').modal('show');
+        //             }
+        //         });
+        //     }
+        // });
 
         $('#successBtn').click(function (e) {
             location.reload();

@@ -148,36 +148,46 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <div class="col-sm-12 col-md-6">
+                        <img src="assets/img/hero-img.png" alt="" class="contact-img">
+                        <style>
+                            .contact-img{
+                                max-width: 600px;
+                            }
+                        </style>
+                    </div>
+                    <div class="col-sm-12 col-md-6 mt-5 mt-lg-0 d-flex align-items-stretch">
                         <form class="php-email-form">
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="name">Ministry Name</label>
+                                <div class="form-group col-12">
+                                    <label for="name">Name</label>
                                     <input type="text" name="mname" class="form-control" id="mname" required>
                                     <span id="cmname" class="error" font-weight-bold></span>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="name">Location</label>
-                                    <input type="text" class="form-control" name="location" id="location" required>
-                                    <span id="clocation" class="error" font-weight-bold></span>
-                                </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="name">Meeting Date</label>
-                                    <input type="date" name="mdate" class="form-control" id="mdate" required>
-                                    <span id="cdate" class="error" font-weight-bold></span>
-                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="name">Phone Number</label>
                                     <input type="text" name="number" class="form-control" id="number" required>
                                     <span id="cnumber" class="error" font-weight-bold></span>
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Email</label>
+                                    <input type="text" class="form-control" name="email" id="email" required>
+                                    <span id="cemail" class="error" font-weight-bold></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="name">Subject</label>
+                                    <input type="text" class="form-control" name="subject" id="subject" required>
+                                    <span id="csubject" class="error" font-weight-bold></span>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="name">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" required>
-                                <span id="cemail" class="error" font-weight-bold></span>
+                                <label for="name">Message</label>
+                                <textarea type="message" name="message" id="message" class="form-control" cols="5" rows="6" required></textarea>        
+                                <span id="cmessage" class="error" font-weight-bold></span>
                             </div>
 
                             <div class="text-center"><button id="invite" type="button">Send Invite</button></div>
@@ -297,10 +307,10 @@
     <script type="text/javascript">
         function validateForm() {
             var mname = $("#mname").val();
-            var location = $("#location").val();
-            var mdate = $("#mdate").val();
             var number = $("#number").val();
             var visitorMail = $("#email").val();
+            var subject = $("#subject").val();
+            var message = $("#message").val();
             var digit = /^[0-9]+$/;
             var email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             var valid = true;
@@ -312,16 +322,6 @@
                 document.getElementById("cmname").innerHTML = "This input cannot be left empty";
                 valid = false;
             }
-            if (location == "") {
-                event.preventDefault();
-                document.getElementById("clocation").innerHTML = "This input cannot be left empty";
-                valid = false;
-            }
-            if (mdate == "") {
-                event.preventDefault();
-                document.getElementById("cdate").innerHTML = "Please select a meeting date";
-                valid = false;
-            }
             if (!digit.test(number)) {
                 event.preventDefault();
                 document.getElementById("cnumber").innerHTML = "Input a valid Phone Number";
@@ -330,6 +330,16 @@
             if (!email.test(visitorMail)) {
                 event.preventDefault();
                 document.getElementById("cemail").innerHTML = "Input a valid Email Address";
+                valid = false;
+            }
+            if (subject == "") {
+                event.preventDefault();
+                document.getElementById("csubject").innerHTML = "This input cannot be left empty";
+                valid = false;
+            }
+            if (message == "") {
+                event.preventDefault();
+                document.getElementById("cmessage").innerHTML = "This input cannot be left empty";
                 valid = false;
             }
             return valid;

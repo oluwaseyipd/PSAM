@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Contact Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+       /* Video background setup */
+#video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Dark overlay effect */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    z-index: -1;
+}
+
+/* Adjust body content to pop over the background */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff; /* Optional: make form text white for contrast */
+}
+
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background-color: orangered;
+        }
+
+        .form-step { display: none; }
+        .form-step.active { display: block; }
+
+        .btn{
+            background: orangered;
+            border: none;
+            font-size: 18px;
+            color:#fff;
+        }
+        .btn:hover{
+            background: rgb(229, 104, 58);
+            border: none;
+            color:#fff;
+        }
+
+        .file-drop {
+            height: 200px;
+            background: #fefefe;
+            border: 2px dashed #ddd;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            color: #555;
+        }
+        .file-drop p{
+            justify-content: center;
+            align-items: center;
+        }
+        .file-drop img {
+            width: 80px;
+        }
+        .file-drop.dragover {
+            border-color: orangered;
+            background-color: #fff5f2;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        .popup-content i {
+            color: green;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <video id="video-bg" autoplay muted loop>
+        <source src="back-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div id="overlay"></div>
+    
+
+<div class="form-container">
+    <h2 class="fw-bold text-black">Registration Form</h2>
+    <p class="text-black">Please fill in the form below.</p>
+    
+    <div class="progress mb-3">
+        <div class="progress-bar" style="width: 0%"></div>
+    </div>
+
+    
+     <div class="form-step active">
+        <h5 class="text-black">Payment Guide</h5>
+        <div class="text-black">
+            <p class="fw-bold">Make your payment to this bank account to proceed with registration:</p>
+            <p><strong>Bank:</strong> Polaris Bank</p>
+            <p><strong>Bank Name: </strong>Higher Ground Baptist Church</p>
+            <p><strong>Account No:</strong> 1140056637</p>
+            <p><strong>Description:</strong> Your Name - PHOTIZO 2025</p>
+        </div>
+        <button class="btn next-step mt-3">Proceed to Registration</button>
+     </div>
+     <!-- Step 1 -->
+    <div class="form-step">
+        <h5 class="fw-bold text-black">Personal Information</h5>
+        <div class="row mb-3">
+            <div class="col"><input type="text" class="form-control" placeholder="First Name"></div>
+            <div class="col"><input type="text" class="form-control" placeholder="Last Name"></div>
+        </div>
+        <input type="email" class="form-control mb-3" placeholder="Email Address">
+        <input type="tel" class="form-control mb-3" placeholder="Phone Number">
+        <select class="form-select mb-3">
+            <option selected>Age Range</option>
+            <option>Below 18</option>
+            <option>18-24</option>
+            <option>25-34</option>
+            <option>35-44</option>
+            <option>45-54</option>
+            <option>55-64</option>
+            <option>Above 65</option>
+        </select>
+        <button class="btn prev-step">Back</button>
+        <button class="btn next-step">Next</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-step">
+        <h5 class="fw-bold text-black">Conference Details</h5>
+        <select class="form-select mb-3">
+            <option selected>First time to attend this conference?</option>
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <select class="form-select mb-3">
+            <option selected>How did you hear about Photizo?</option>
+            <option>Church</option>
+            <option>Flyer</option>
+            <option>Social Media</option>
+            <option>Recommendation from friend</option>
+        </select>
+        <select class="form-select mb-3">
+            <option selected>How are you attending?</option>
+            <option>Onsite</option>
+            <option>Online</option>
+        </select>
+        <textarea class="form-control mb-3" placeholder="What are your expectations?"></textarea>
+        <button class="btn prev-step">Back</button>
+        <button class="btn next-step">Proceed to Payment</button>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="form-step">
+        <h5 class="fw-bold text-black">Upload Receipt</h5>
+        <div class="file-drop" id="fileDrop">
+            <img src="picture.png" alt="">
+            <p>Drag & drop your receipt here, or click to select a file</p>
+            <input type="file" id="fileInput" accept=".png,.jpeg,.jpg,.pdf" hidden>
+        </div>
+        <button class="btn prev-step mt-3">Back</button>
+        <button class="btn mt-3" id="submitBtn" >Submit</button>
+    </div>
+</div>
+
+<div class="popup-overlay" id="popup">
+    <div class="popup-content">
+        <i class="fas fa-check-circle"></i>
+        <h3>Registration Complete!</h3>
+        <p>Thank you for your submission.</p>
+    </div>
+</div>
+
+<script>
+    const steps = document.querySelectorAll('.form-step');
+    const nextBtns = document.querySelectorAll('.next-step');
+    const prevBtns = document.querySelectorAll('.prev-step');
+    const progressBar = document.querySelector('.progress-bar');
+    let currentStep = 0;
+
+    nextBtns.forEach(btn => btn.addEventListener('click', () => changeStep(1)));
+    prevBtns.forEach(btn => btn.addEventListener('click', () => changeStep(-1)));
+
+    function changeStep(direction) {
+        steps[currentStep].classList.remove('active');
+        currentStep += direction;
+        steps[currentStep].classList.add('active');
+        progressBar.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+    }
+
+    const fileDrop = document.getElementById('fileDrop');
+    const fileInput = document.getElementById('fileInput');
+
+    fileDrop.addEventListener('click', () => fileInput.click());
+    fileDrop.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileDrop.classList.add('dragover');
+    });
+    fileDrop.addEventListener('dragleave', () => fileDrop.classList.remove('dragover'));
+    fileDrop.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileDrop.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (['image/png', 'image/jpeg', 'application/pdf'].includes(file.type)) {
+            alert(`File accepted: ${file.name}`);
+        } else {
+            alert('Only PNG, JPEG, and PDF files are allowed');
+        }
+    });
+
+    const submitBtn = document.getElementById('submitBtn');
+    const popup = document.getElementById('popup');
+    submitBtn.addEventListener('click', () => popup.style.display = 'flex');
+</script>
+
+</body>
+</html>
